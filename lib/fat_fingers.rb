@@ -78,19 +78,19 @@ protected
   end
 
   def clean_up_googlemail
-    gsub(/@(g(o)*)*le(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@googlemail.")
+    gsub(/@(g*(o)*)*le(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@googlemail.")
   end
 
   def clean_up_gmail
-    gsub(/@g(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@gmail.")
+    gsub(/@g*(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@gmail.")
   end
 
   def clean_up_hotmail
-    gsub(/@h(o|p)*y*t*o*a*m*t*(a|i|k|l)*\./,"@hotmail.")
+    gsub(/@h*(o|p)*y*t*o*a*m*t*(a|i|k|l)*\./,"@hotmail.")
   end
 
   def clean_up_yandex
-    gsub(/@ya+\.?r+u+/,"@ya.ru")
+    gsub(/@y*a+\.?r+u+/,"@ya.ru")
   end
 
   def clean_up_yahoo
@@ -98,13 +98,13 @@ protected
   end
 
   def clean_up_aol
-    gsub(/@ol\./,"@aol.")
+    gsub(/@(ol|a*ol)\./,"@aol.")
   end
 
   def clean_up_other_providers
-    gsub(/@co*ma*cas*t\.net/,"@comcast.net").
-    gsub(/@sbcglob(a|l)\.net/, "@sbcglobal.net").
-    gsub(/@ver*i*z*on\.net/,"@verizon.net")
+    gsub(/@c*o*ma*cas*t\.net/,"@comcast.net").
+    gsub(/@s*bcglob(a|l)\.net/, "@sbcglobal.net").
+    gsub(/@v*er*i*z*on\.net/,"@verizon.net")
   end
 
   def clean_up_known_coms
