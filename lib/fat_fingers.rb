@@ -85,7 +85,7 @@ class String
   end
 
   def clean_up_hotmail
-    gsub(/@h*(o|p)*y*o*m*t*(a|i|k|l)*\./, '@hotmail.')
+    gsub(/@h*(o|p)*y*o*m*t*(a|i|o|k|l)*\./, '@hotmail.')
   end
 
   def clean_up_yandex

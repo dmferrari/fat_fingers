@@ -91,7 +91,8 @@ class StringTest < MiniTest::Unit::TestCase
       "test@hptmail.com",
       "test@htomali.com",
       "test@homtail.com",
-      "test@hotmail.co"
+      "test@hotmail.co",
+      "test@hotmaol.co"
       ]
 
     @good_aol = "test@aol.com"
