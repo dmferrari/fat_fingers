@@ -224,7 +224,7 @@ class StringTest < MiniTest::Unit::TestCase
     @bad_aol_com = ["test@aol.com"]
 
     @good_att_net = "test@att.net"
-    @bad_att_net = ["test@att.net"]
+    @bad_att_net = ["test@hotmail.net"]
 
     @good_facebook_com = "test@facebook.com"
     @bad_facebook_com = ["test@facebook.com"]

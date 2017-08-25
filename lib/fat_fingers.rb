@@ -1,6 +1,5 @@
 class String
-
-  EMAIL_REGEXP = /.+@.+\..+/i.freeze
+  EMAIL_REGEXP = /.+@.+\..+/i
 
   # Internal: Check a given string for misspelled TLDs and misspelled domains from popular e-mail providers.
   #
@@ -14,98 +13,98 @@ class String
   #
   # Returns the cleaned String.
   def clean_up_typoed_email
-    cleaned = downcase.
-    remove_invalid_characters.
-    fix_transposed_periods.
-    remove_period_before_at_sign.
-    handle_different_country_tlds.
-    fix_coms_with_appended_letters.
-    clean_up_funky_coms.
-    clean_up_funky_nets.
-    clean_up_funky_orgs.
-    clean_up_gmail.
-    clean_up_googlemail.
-    clean_up_hotmail.
-    clean_up_yandex.
-    clean_up_yahoo.
-    clean_up_aol.
-    clean_up_other_providers.
-    clean_up_known_coms.
-    add_a_period_if_they_forgot_it
+    cleaned = downcase
+              .remove_invalid_characters
+              .fix_transposed_periods
+              .remove_period_before_at_sign
+              .handle_different_country_tlds
+              .fix_coms_with_appended_letters
+              .clean_up_funky_coms
+              .clean_up_funky_nets
+              .clean_up_funky_orgs
+              .clean_up_gmail
+              .clean_up_googlemail
+              .clean_up_hotmail
+              .clean_up_yandex
+              .clean_up_yahoo
+              .clean_up_aol
+              .clean_up_other_providers
+              .clean_up_known_coms
+              .add_a_period_if_they_forgot_it
     EMAIL_REGEXP.match(cleaned) ? cleaned : downcase
   end
 
-protected
+  protected
 
   def remove_invalid_characters
-    gsub(/(\s|\#|\'|\"|\\)*/, "").
-    gsub(/(\,|\.\.)/, ".").
-    gsub("@@", "@")
+    gsub(/(\s|\#|\'|\"|\\)*/, '')
+      .gsub(/(\,|\.\.)/, '.')
+      .gsub('@@', '@')
   end
 
   def fix_transposed_periods
-    gsub(/c\.om$/, ".com").
-    gsub(/n\.et$/, ".net")
+    gsub(/c\.om$/, '.com')
+      .gsub(/n\.et$/, '.net')
     # can't do "o.gr" => ".org", as ".gr" is a valid TLD
   end
 
   def remove_period_before_at_sign
-    gsub(/\.*@/, "@")
+    gsub(/\.*@/, '@')
   end
 
   def handle_different_country_tlds
-    gsub(/\.(o\.uk|couk|co\.um)$/, ".co.uk").
-    gsub(/\.(cojp|co\.lp)$/, ".co.jp")
+    gsub(/\.(o\.uk|couk|co\.um)$/, '.co.uk')
+      .gsub(/\.(cojp|co\.lp)$/, '.co.jp')
   end
 
   def fix_coms_with_appended_letters
-    gsub(/\.com\.$/, ".com").
-    gsub(/\.com[^\.@]*$/, ".com").
-    gsub(/\.co[^op]$/, ".com")
+    gsub(/\.com\.$/, '.com')
+      .gsub(/\.com[^\.@]*$/, '.com')
+      .gsub(/\.co[^op]$/, '.com')
   end
 
   def clean_up_funky_coms
-    gsub(/\.c*(c|ci|coi|l|m|n|o|op|cp|0)*m+o*$/, ".com").
-    gsub(/\.(c|v|x)o+(m|n)$/, ".com")
+    gsub(/\.c*(c|ci|coi|l|m|n|o|op|cp|0)*m+o*$/, '.com')
+      .gsub(/\.(c|v|x)o+(m|n)$/, '.com')
   end
 
   def clean_up_funky_nets
-    gsub(/\.(nte*|n*et*)$/, ".net")
+    gsub(/\.(nte*|n*et*)$/, '.net')
   end
 
   def clean_up_funky_orgs
-    gsub(/\.o+g*r*g*$/, ".org") # require the o, to not false-positive .gr e-mails
+    gsub(/\.o+g*r*g*$/, '.org') # require the o, to not false-positive .gr e-mails
   end
 
   def clean_up_googlemail
-    gsub(/@(g*(o)*)*le(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@googlemail.")
+    gsub(/@(g*(o)*)*le(n|m)*(a|i|l)+m*(a|i|k|l)*\./, '@googlemail.')
   end
 
   def clean_up_gmail
-    gsub(/@g*(n|m)*(a|i|l)+m*(a|i|k|l)*\./,"@gmail.")
+    gsub(/@g*(n|m)*(a|i|l)+m*(a|i|k|l)*\./, '@gmail.')
   end
 
   def clean_up_hotmail
-    gsub(/@h*(o|p)*y*o*m*t*(a|i|k|l)*\./,"@hotmail.")
+    gsub(/@h*(o|p)*y*o*m*t*(a|i|k|l)*\./, '@hotmail.')
   end
 
   def clean_up_yandex
-    gsub(/@y*a+\.?r+u+/,"@ya.ru")
+    gsub(/@y*a+\.?r+u+/, '@ya.ru')
   end
 
   def clean_up_yahoo
-    gsub(/(?!@ya\.ru)@(y+a*h*a*o*|y*a*h+a*o*|y+a+h+[^.]{,3})\./,"@yahoo.")
+    gsub(/(?!@ya\.ru)@(y+a*h*a*o*|y*a*h+a*o*|y+a+h+[^.]{,3})\./, '@yahoo.')
   end
 
   def clean_up_aol
-    gsub(/@(ol|a*ol)\./,"@aol.")
+    gsub(/@(ol|a*ol)\./, '@aol.')
   end
 
   def clean_up_other_providers
-    gsub(/@c*o*ma*cas*t\.net/,"@comcast.net").
-    gsub(/@s*bcglob(a|l)\.net/, "@sbcglobal.net").
-    gsub(/@v*er*i*z*on\.net/,"@verizon.net")
-    gsub(/@a*t*t\.net/,"@att.net")
+    gsub(/@c*o*ma*cas*t\.net/, '@comcast.net')
+      .gsub(/@s*bcglob(a|l)\.net/, '@sbcglobal.net')
+      .gsub(/@v*er*i*z*on\.net/, '@verizon.net')
+      .gsub(/@a*t*t\.net/, '@att.net')
   end
 
   def clean_up_known_coms
@@ -113,8 +112,7 @@ protected
   end
 
   def add_a_period_if_they_forgot_it
-    gsub(/([^\.])(com|org|net)$/, '\1.\2').
-    gsub(/(@\.)(com|org|net)$/, '.\2')
+    gsub(/([^\.])(com|org|net)$/, '\1.\2')
+      .gsub(/(@\.)(com|org|net)$/, '.\2')
   end
-
 end
