@@ -105,6 +105,7 @@ protected
     gsub(/@c*o*ma*cas*t\.net/,"@comcast.net").
     gsub(/@s*bcglob(a|l)\.net/, "@sbcglobal.net").
     gsub(/@v*er*i*z*on\.net/,"@verizon.net")
+    gsub(/@a*t*t\.net/,"@att.net")
   end
 
   def clean_up_known_coms
